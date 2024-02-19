@@ -1,5 +1,7 @@
 # RAYLIB 2D RPG TUTORIAL
 
+![alt text](./start-your-own-2d-rpg-with-raylib.jpg "Start Your Own 2D RPG With Raylib")
+
 VIEW ON YOUTUBE - https://youtu.be/vjU62r-M1CY
 
 🎮 Dive into the exciting world of game development with this step-by-step tutorial on creating your own 2D RPG using Raylib!
