@@ -4,11 +4,22 @@
 #include "raylib.h"
 #include "raymath.h"
 
-#define TILE_WIDTH 8
-#define TILE_HEIGHT 8
+#define TILE_SIZE 8
+#define TILE_SCALE 3
 
 #define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_HEIGHT 400
+
+#define WORLD_WIDTH 64 // map width in tiles (aka. 20 * TILE_SIZE)
+#define WORLD_HEIGHT 64 // map height in tiles (aka. 20 * TILE_HEIGHT)
+
+#define VIEW_WIDTH 19 // width of the viewable area in tiles (aka. 19 * TILE_SIZE = 9 tiles on west, east + 1 in the center)
+#define VIEW_HEIGHT 13 // height of the viewable area in tiles (aka. 13 * TILE_SIZE = 6 tiles on north, south + 1 in the center)
+
+#define VIEW_CENTER_X (10 * TILE_SIZE * TILE_SCALE) 
+#define VIEW_CENTER_Y (7 * TILE_SIZE * TILE_SCALE)
+
+
 
 #define MAX_TEXTURES 1
 typedef enum {
@@ -30,8 +41,7 @@ typedef enum {
     MUSIC_DARK_AMBIENCE
 } music_asset;
 
-#define WORLD_WIDTH 20 // 20 * TILE_WIDTH
-#define WORLD_HEIGHT 20 // 20 * TILE_HEIGHT
+
 
 typedef enum {
     TILE_TYPE_DIRT = 0,
@@ -40,9 +50,10 @@ typedef enum {
 } tile_type;
 
 typedef struct {
-    int x;
-    int y;
+    //int x;
+    //int y;
     int type;
+    int id;
 } sTile;
 
 typedef enum {
@@ -74,7 +85,6 @@ void GameStartup();
 void GameUpdate();
 void GameRender();
 void GameShutdown();
-void DrawTile(int pos_x, int pos_y, int texture_index_x, int texture_index_y);
 
 
 void StartTimer(sTimer* timer, double lifetime);
@@ -82,5 +92,11 @@ bool IsTimerDone(sTimer timer);
 double GetElapsed(sTimer timer);
 
 
+extern Texture2D textures[MAX_TEXTURES];
+
+void UpdateViewData(sTile map_data[][WORLD_HEIGHT], int map_width, int map_height, sTile view_data[][VIEW_HEIGHT], int view_width, int view_height, int player_x, int player_y);
+
+void RenderViewData(sTile view_data[][VIEW_HEIGHT], int view_width, int view_height, Rectangle view_pos);
+void DrawMapTile(int pos_x, int pos_y, int texture_index_x, int texture_index_y);
 
 #endif

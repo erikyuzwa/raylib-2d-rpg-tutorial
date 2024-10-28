@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\game.c" />
     <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\map.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\stdafx.h" />
